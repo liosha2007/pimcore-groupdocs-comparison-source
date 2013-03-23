@@ -10,7 +10,7 @@ For use plugin add code to your view:
 
 Also you can override default params like:
 ```php
-<?php $groupDocs1 = new GroupDocsComparison_GroupDocs(array( 'fileid' => '123', 'frameborder' => '1', 'width' => '680', 'height' => '900' )); ?>
+<?php $groupDocs1 = new GroupDocsComparison_GroupDocs(array( 'frameborder' => '1', 'width' => '680', 'height' => '900' )); ?>
 <?php echo $groupDocs1->renderFrame(); ?>
 ```
 

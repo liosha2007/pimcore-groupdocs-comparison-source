@@ -6,9 +6,9 @@ class GroupDocsComparison_GroupDocs {
 	protected $_config = null;
 
 	/**
-	 * GroupDocs file ID
+	 * GroupDocs result file ID
 	 */
-	protected $_fileid = 0;
+	protected $_resfileid = 0;
 	
 	/**
 	 * GroupDocs user embd key
@@ -36,10 +36,21 @@ class GroupDocsComparison_GroupDocs {
 	 */
 	public function __construct($config = array()) {
 		$this->_config = new GroupDocsComparison_Config();
-		// Set file ID
-		$this->_fileid = (empty($config['fileid'])) ? $this->getConfig('fileid') : $config['fileid'];
+		$confArray = json_decode($this->getConfig('data'), true);
+		// Set Client ID
+		$this->_cid = (empty($config['cid'])) ? $confArray['cid'] : $config['cid'];
+		// Set Private key
+		$this->_pkey = (empty($config['pkey'])) ? $confArray['pkey'] : $config['pkey'];
+		// Set base URL
+		$this->_baseurl = (empty($config['baseurl'])) ? $confArray['baseurl'] : $config['baseurl'];
+		// Set first file ID
+		$this->_firstfileid = (empty($config['firstfileid'])) ? $confArray['firstfileid'] : $config['firstfileid'];
+		// Set second file ID
+		$this->_secondfileid = (empty($config['secondfileid'])) ? $confArray['secondfileid'] : $config['secondfileid'];
+		// Set result file ID
+		$this->_resfileid = (empty($config['resfileid'])) ? $confArray['resfileid'] : $config['resfileid'];
 		// Set embed key
-		$this->_embedKey = (empty($config['embedKey'])) ? $this->getConfig('embedKey') : $config['embedKey'];
+		$this->_embedKey = (empty($config['embedKey'])) ? $confArray['embedKey'] : $config['embedKey'];
 		// Set frameborder
 		$this->_frameborder = (empty($config['frameborder'])) ? $this->getConfig('frameborder') : $config['frameborder'];
 		// Set width
@@ -71,11 +82,11 @@ class GroupDocsComparison_GroupDocs {
 	 * Render html frame
 	 */
 	public function renderFrame() {
-		return '<iframe src="http://stage-apps.groupdocs.com/document-comparison/embed/' 
+		return '<iframe src="http://apps.groupdocs.com/document-comparison/embed/' 
 				. $this->_embedKey 
 				. '/' 
-				. $this->_fileid 
-				. '&referer=PimCore/1.0" frameborder="'
+				. $this->_resfileid 
+				. '?referer=PimCore/1.0" frameborder="'
 				. $this->_frameborder
 				. '" width="'
 				. $this->_width

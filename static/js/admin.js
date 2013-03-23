@@ -82,6 +82,19 @@ pimcore.plugin.GroupDocsComparison = Class.create(pimcore.plugin.admin, {
                         },
 						{
 							xtype : 'label',
+							text : 'Base Url: ',
+							style: 'margin: 8px 3px 3px 8px;'
+						},
+						{
+                            xtype: 'textfield',
+                            id : 'baseurl',
+                            value: objAjax.configs.baseurl,
+                            width: 250,
+                            allowBlank: false,
+                            style: 'margin: 8px 3px 3px 3px;'
+                        },
+						{
+							xtype : 'label',
 							text : 'First file ID: ',
 							style: 'margin: 8px 3px 3px 8px;'
 						},
@@ -165,6 +178,7 @@ pimcore.plugin.GroupDocsComparison = Class.create(pimcore.plugin.admin, {
 	saveClick : function () {
 		var cid = Ext.getCmp('cid').getValue();
 		var pkey = Ext.getCmp('pkey').getValue();
+		var baseurl = Ext.getCmp('baseurl').getValue();
 		var firstfileid = Ext.getCmp('firstfileid').getValue();
 		var secondfileid = Ext.getCmp('secondfileid').getValue();
 		var frameborder = Ext.getCmp('frameborder').getValue();
@@ -175,6 +189,7 @@ pimcore.plugin.GroupDocsComparison = Class.create(pimcore.plugin.admin, {
 					params: {
 						'cid' : cid,
 						'pkey' : pkey,
+						'baseurl' : baseurl,
 						'firstfileid' : firstfileid,
 						'secondfileid' : secondfileid,
 						'frameborder' : frameborder,

@@ -8,14 +8,13 @@ class GroupDocsComparison_Plugin extends Pimcore_API_Plugin_Abstract implements 
 	public static function install() {
 		Pimcore_API_Plugin_Abstract::getDb()->query("CREATE TABLE IF NOT EXISTS `plugin_groupdocs` (
 			`id` INTEGER,
-	        `fileid` varchar(255) DEFAULT '0',
-	        `embedKey` varchar(255) DEFAULT '0',
+	        `data` varchar(512) DEFAULT '0',
 			`frameborder` INTEGER DEFAULT 0,
 	        `width` INTEGER DEFAULT 480,
 			`height` INTEGER DEFAULT 320,
 				PRIMARY KEY  (`id`)
 				) ENGINE=MyISAM DEFAULT CHARSET=utf8;");
-		Pimcore_API_Plugin_Abstract::getDb()->query("INSERT INTO `plugin_groupdocs` (`id`, `embedKey`, `fileid`, `frameborder`, `width`, `height`) VALUES (5, '0', '0', 0, 480, 320);");
+		Pimcore_API_Plugin_Abstract::getDb()->query("INSERT INTO `plugin_groupdocs` (`id`, `data`, `frameborder`, `width`, `height`) VALUES (5, '{\"cid\":\"\",\"pkey\":\"\",\"baseurl\":\"https://api.groupdocs.com/v2.0\",\"firstfileid\":\"\",\"secondfileid\":\"\",\"resfileid\":\"\",\"embedKey\":\"\"}', 0, 480, 320);");
 
 		if (self::isInstalled()) {
 			return "GroupDocs Comparison Plugin successfully installed.";
